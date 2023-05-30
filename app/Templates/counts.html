@@ -1,0 +1,39 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <title>Sentiment Analysis Counts</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+
+    <div class="container">
+    <h1 class="animated">SENTIMENT ANALYSIS COUNTS</h1>
+    <table border="1px" class="main">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>EMPLOYEE</th>
+            <th>POSITIVE ADD-UP</th>
+            <th>NEGATIVE ADD-UP</th>
+        </tr>
+    </thead>
+        {% for row in results %}
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.email_id}}</td>
+            <td>{{row.positive_count}}</td>
+            <td>{{row.negative_count}}</td>
+        </tr>
+        {%endfor%}
+        
+    </table>
+    <img src="{{ url_for('sentiment_counts_image') }}">
+</div>
+</body>
+</html>

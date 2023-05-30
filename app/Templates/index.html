@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link href="https://fonts.googleapis.com/css2?family=Ubuntu&display=swap" rel="stylesheet">
+    <title>Sentiment Results</title>
+</head>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<body>
+
+    <div class="container">
+    <h1 class="animated">SENTIMENT ANALYSIS</h1>
+    <table  border="1px" class="main">
+   
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>SENDER</th>
+            <th>SUBJECT</th>
+            <th>BODY</th>
+            <th>APPRECIATION</th>
+            <th>CATEGORY</th>
+            <th>SENTIMENT</th>
+            <th>REACTION</th>
+            <th>SENTIMENT SCORE</th>
+            
+        </tr>
+    </thead>
+        {% for row in results %}
+        <tr>
+            <td>{{row.id}}</td>
+            <td>{{row.sender}}</td>
+            <td>{{row.subject}}</td>
+            <td>{{row.body}}</td>
+            <td>{{row.appreciation}}</td>
+            <td>{{row.category}}</td>
+            
+            <td>{{row.sentiment}}</td>
+            <td>
+                {% if row.sentiment == 'POSITIVE' %}
+                <img src="{{ url_for('static', filename='smile.png') }}" alt="positive" height="30px">
+                {% elif row.sentiment == 'NEGATIVE' %}
+                <img src="{{ url_for('static', filename='angry.png') }}" alt="negative" height="33px">
+                {% else %}
+                <img src="{{ url_for('static', filename='neutral.png') }}" alt="neutral" height="30px">
+                {% endif %}
+            </td>
+            <td>{{row.score}}</td>
+          
+        </tr>
+      
+        {%endfor%}
+        
+    </table>
+</div>
+</body>
+</html>
